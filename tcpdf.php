@@ -21673,7 +21673,7 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 	 * @since 5.0.001 (2010-05-06)
 	 * @see addTOCPage(), endTOCPage(), addTOC()
 	 */
-	public function addHTMLTOC($page=null, $toc_name='TOC', $templates=array(), $correct_align=true, $style='', $color=array(0,0,0), $toc_number = 0) {
+	public function addHTMLTOC($page=null, $toc_name='TOC', $templates=array(), $correct_align=true, $style='', $color=array(0,0,0), $customNumber = false) {
 		$filler = ' ';
 		$prev_htmlLinkColorArray = $this->htmlLinkColorArray;
 		$prev_htmlLinkFontStyle = $this->htmlLinkFontStyle;
@@ -21711,8 +21711,8 @@ Putting 1 is equivalent to putting 0 and calling Ln() just after. Default value:
 			}
 			// replace templates with current values
 			$row = str_replace('#TOC_DESCRIPTION#', $outline['t'], $row);
-			if(str_contains($row, "Daftar Isi"))
-                $pagenum = $toc_number;
+			if($customNumber)
+                $pagenum = $page;
 			$row = str_replace('#TOC_PAGE_NUMBER#', $pagenum, $row);
 			// add link to page
 			$row = '<a href="#'.$outline['p'].','.$outline['y'].'">'.$row.'</a>';
